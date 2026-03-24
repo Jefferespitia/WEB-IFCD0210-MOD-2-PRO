@@ -2,28 +2,25 @@
 import express from 'express'
 import debug from 'debug';
 
-const log = debug ("11-express:index");
+const log = debug('11-express:index');
+const port = process.env.PORT ||  3000
 
-const port = process.env.PORT || 4000
+const app = express()
+log('Express app created')
 
-export const app = express()
-log("Express app created")
-
-
-app.get('/', (req, res) => {
-    res.send('Hello World!')
+app.get('/', (_req, res) => {
+  res.send('Hello World!')
 })
 
-
-app.post("/", (req,res) => {
-    res.send('Hello Post')
+app.post('/', (_req, res) => {
+    res.statusCode = 201
+    res.send('Hello Post!')
 })
 
-app.get('/api', (req, res) => {
-    res.send('API rest!')
+app.get('/api', (_req, res) => {
+  res.send('API rest')
 })
-
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  log(`Example app listening on port ${port}`)
 })

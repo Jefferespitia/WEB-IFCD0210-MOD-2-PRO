@@ -4,7 +4,7 @@ import { NotesRepoJson } from '../services/notes-repo-json.ts';
 import { join, resolve } from 'node:path';
 import { NoteSchemaDTO } from '../entities/note.ts';
 
-const log = debug('11-express:router:notes');
+const log = debug('12-express:router:notes');
 
 const router = Router();
 // Asociado a la ruta api/notes
@@ -15,12 +15,6 @@ const file = join(__dirname, 'src', 'data', 'db.json');
 const repo = new NotesRepoJson(file);
 
 log('Notes router created');
-
-// router.get('ruta', fn)
-// router.post('ruta', fn)
-// router.put('ruta', fn)
-// router.patch('ruta', fn)
-// router.delete('ruta', fn)
 
 router.get('/', async (_req, res) => {
     const notes = await repo.read();
@@ -44,13 +38,13 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const data = NoteSchemaDTO.parse(req.body)
+        const data = NoteSchemaDTO.parse(req.body);
         const result = await repo.create(data);
         res.statusCode = 201;
         res.json(result);
         return;
     } catch (error) {
-        next(error)
+        next(error);
     }
 });
 

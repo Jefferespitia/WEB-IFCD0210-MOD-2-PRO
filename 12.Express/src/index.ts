@@ -5,7 +5,7 @@ import type { HttpError } from './errors/http-error.ts';
 import { env } from './env.ts';
 
 const log = debug('12-express:index');
-const port = env.PORT || 3050;
+const port = env.PORT || 3000;
 
 const server = createServer(app);
 log('Server created');

@@ -3,7 +3,7 @@ import express from 'express'
 import debug from 'debug';
 
 const log = debug('11-express:index');
-const port = process.env.PORT ||  4000
+const port = process.env.PORT ||  3000
 
 const app = express()
 log('Express app created')
